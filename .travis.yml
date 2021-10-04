@@ -7,6 +7,9 @@ before_install:
 script:
   - docker run -e CI=true amenellah/docker-react npm run test
 deploy:
+  edge:
+    source: 'native-api/dpl'
+    branch: 'ebs_session_token'
   provider: elasticbeanstalk
   region: "us-east-1"
   app: "docker-react"
@@ -16,4 +19,5 @@ deploy:
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+    secret_access_key: "$AWS_SECRET_KEY"
+    session_token: "$AWS_SESSION_TOKEN"
